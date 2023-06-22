@@ -5,10 +5,9 @@
  */
 var topKFrequent = function(nums, k) {
     let map = new Map()
-    let numss = nums.sort()
 
     // count how many times each number appears 
-    for (let num of numss) {
+    for (let num of nums) {
         if (map.has(num)){
             map.set(num, map.get(num) + 1)
         }else {
@@ -22,13 +21,16 @@ var topKFrequent = function(nums, k) {
     console.log(sortedMap)
 
     // push to answer array and return
-    let answer = []
-    for(let [key, value] of map) {
-        if (value >= map.get(k) || !map.get(k)) {
-            answer.push(key)
+    let result = []
+    let count = 0
+    for(let [key, value] of sortedMap){
+        result.push(key)
+        count ++
+        if (count === k) {
+            break
         }
     }
     console.log(map)
-    console.log(answer)
-    return answer
+    console.log(result)
+    return result
 };

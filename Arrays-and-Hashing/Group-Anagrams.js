@@ -2,33 +2,24 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
-
-
 var groupAnagrams = function(strs) {
-    // 1 --> Build map of letter combo to strings that contain those letters
-    const map = new Map()
-    /*
-    Example of the hash map
-    let output = []
-    let counter = 0;
-    for (let value of map.values()) {
-        console.log(value)
-        output[counter] = value
-        counter++
-    }
-    */
-    for (let str of strs) {
+    const map = new Map();
+
+    for(let str of strs) {
+        // split and sort the characters of each string
         let letters = str.split('').sort()
-        if(map[letters]){
+
+        // check if set of characters already exists in solution
+        if (map[letters]){
+            // if true add the 'letters' value to the matching pair
             map[letters].push(str)
         }else {
+            // if not add them
             map[letters] = [str]
         }
     }
 
-    //2--> return in an array
-    let output = Object.values(map)
-    console.log(output)
-    return output
+    let answer = Object.values(map);
+    console.log(answer)
+    return answer
 };
-

@@ -4,34 +4,62 @@
  */
 var productExceptSelf = function(nums) {
     let output = []
-    let n = 1
-    output[0] = n
-    // calculate prefix 
-    for (let i = 0; i < nums.length - 1; i++) {
-        //console.log(nums[i])
-        n = n * nums[i]
-        output[i+1] = n
+    
+    let prefix = 1
+    for (let i = 0; i < nums.length; i++) {
+        output[i] = prefix
+        prefix *= nums[i]
     }
-    //console.log("output: " + output)
 
-
-    // calculate postfix
-    n = 1
-    output[output.length-1] = output[output.length-1] * n
+    let postfix = 1
     for (let i = nums.length - 1; i >= 0; i--) {
-        //console.log(nums[i])
-        n = n * nums[i]
-        output[i-1] = n * output[i-1]
+        output[i] *= postfix
+        postfix *= nums[i]
     }
-    //console.log("output: " + output)
 
-    // return
     return output
 };
 
 
 
-//////// OLD SOLUTION ////////
+
+//////// SOLUTION 2 ////////
+// - best solution but a bit unintuitive
+
+// /**
+//  * @param {number[]} nums
+//  * @return {number[]}
+//  */
+// var productExceptSelf = function(nums) {
+//     let output = []
+//     let n = 1
+//     output[0] = n
+//     // calculate prefix 
+//     for (let i = 0; i < nums.length - 1; i++) {
+//         //console.log(nums[i])
+//         n = n * nums[i]
+//         output[i+1] = n
+//     }
+//     //console.log("output: " + output)
+
+
+//     // calculate postfix
+//     n = 1
+//     output[output.length-1] = output[output.length-1] * n
+//     for (let i = nums.length - 1; i >= 0; i--) {
+//         //console.log(nums[i])
+//         n = n * nums[i]
+//         output[i-1] = n * output[i-1]
+//     }
+//     //console.log("output: " + output)
+
+//     // return
+//     return output
+// };
+
+
+
+//////// SOLUTION 1 ////////
 // - took wayyyy too much memory 
 
 // /**
